@@ -25,7 +25,13 @@ namespace Techievibe.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowOrigin",
+                    builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+            });
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddMvc().AddJsonOptions(x => x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -40,8 +46,12 @@ namespace Techievibe.Api
                 app.UseHsts();
             }
 
+            app.UseCors("AllowOrigin");
+
             app.UseHttpsRedirection();
             app.UseMvc();
+            app.UseDeveloperExceptionPage();
+            app.UseDatabaseErrorPage();
         }
     }
 }

@@ -1,19 +1,25 @@
 //predefined modules
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http'
+import { CommonModule } from '@angular/common'
 
 //application modules
 import { AppRoutingModule } from './app-routing.module';
-
+import { QuillModule } from 'ngx-quill'
 //components
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { HeaderComponent } from './shared/components/header/header.component'
 import { FooterComponent } from './shared/components/footer/footer.component';
-import { ContactCreateComponent } from './contact-create/contact-create.component';
-import { ContactListComponent } from './contact-list/contact-list.component';
 import { NotFoundComponent } from './shared/components/not-found/not-found.component'
+import { LocationStrategy, PathLocationStrategy } from '@angular/common';
+import { AdminHomeComponent } from './admin/admin-home/admin-home.component';
+import {BlogComponent} from './blogging/blog/blog.component';
+import { BlogPostComponent } from './blogging/blog-post/blog-post.component'
+import {UrlSerializer} from '@angular/router';
+import {CustomUrlSerializer} from './shared/utilities/custom-url-serializer';
 
 @NgModule({
   declarations: [
@@ -21,16 +27,24 @@ import { NotFoundComponent } from './shared/components/not-found/not-found.compo
     DashboardComponent,
     HeaderComponent,
     FooterComponent,
-    ContactCreateComponent,
-    ContactListComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    AdminHomeComponent,
+    BlogComponent,
+    BlogPostComponent
   ],
   imports: [
     BrowserModule,
+    CommonModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    QuillModule,
+    QuillModule.forRoot()
   ],
-  providers: [],
+  providers: [{provide: LocationStrategy, useClass: PathLocationStrategy},
+              {provide: UrlSerializer, useClass: CustomUrlSerializer}
+              ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

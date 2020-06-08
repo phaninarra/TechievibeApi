@@ -24,6 +24,9 @@ html,body {
     border: solid 1px red;
 }
 
+.ql-container {
+    min-height:250px;
+}
 
  /* dashboard card styles */
 
@@ -63,3 +66,108 @@ h6.card-subtitle
     vertical-align: middle;
     margin: 0 auto;
 }
+
+.padding-top-bottom-default {
+    padding-top: 4.6875em;
+    padding-bottom: 4.6875em;
+}
+
+/* BLOG HOME STYLES*/
+
+/* #blogPostSummaryArticle hr{
+margin-top:20px;
+margin-bottom:20px;
+font-weight: bolder;
+} */
+
+
+#blogPostSummaryBody {
+    border-left:solid 2px #e5e5e5;
+    padding:10px;
+    max-height:100px;
+    text-overflow: ellipsis;
+    overflow:hidden;
+}
+
+/* BLOG HOME STYLES END*/
+
+/* BLOG POST STYLES */
+
+#blogPostBody {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    line-height:2rem;
+    font-size:16px;
+}
+
+#blogPostBody blockquote {
+    background: #f9f9f9;
+    border-left: 10px solid #ccc;
+    margin: 1.5em 10px;
+    padding: 0.5em 10px;
+    quotes: "\201C""\201D""\2018""\2019";
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-style: italic;
+}
+#blogPostBody blockquote:before {
+    color: #ccc;
+    content: open-quote;
+    font-size: 4em;
+    line-height: 0.1em;
+    margin-right: 0.25em;
+    vertical-align: -0.4em;
+}
+#blogPostBody blockquote:after {
+    color: #ccc;
+    content: close-quote;
+    font-size: 4em;
+    line-height: 0.1em;
+    margin-right: 0.25em;
+    vertical-align: -0.4em;
+}
+#blogPostBody blockquote p {
+    display: inline;
+}
+
+#blogPostBody pre
+{
+    background: #f9f9f9;
+    border: 10px solid #ccc;
+    margin: 1.5em 10px;
+    padding: 0.5em 10px;
+    quotes: "\201C""\201D""\2018""\2019";
+    font-family: Verdana;
+    font-size:12px;
+}
+
+#blogPostBody sub {
+    letter-spacing: 2px;
+}
+
+#blogPostBody sup {
+    letter-spacing: 2px;
+}
+
+#blogPostBody .ql-size-small {
+    font-size:12px;
+}
+
+#blogPostBody .ql-size-large {
+    font-size:20px;
+}
+
+#blogPostBody .ql-size-huge {
+    font-size:28px;
+}
+
+/* BLOG POST STYLES END */
+
+
+/* COMMENTS STYLE : START */
+
+.wp-copyright
+{
+    display: none !important;
+    font-size:1px;
+}
+
+/* COMMENTS STYLE: END */
