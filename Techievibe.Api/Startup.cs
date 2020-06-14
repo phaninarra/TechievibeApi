@@ -48,7 +48,6 @@ namespace Techievibe.Api
 
             app.UseCors("AllowOrigin");
 
-            app.UseHttpsRedirection();
             app.UseMvc();
             app.UseDeveloperExceptionPage();
             app.UseDatabaseErrorPage();

@@ -126,6 +126,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "Techievibe.Ui"
+    }
+  },
+  "defaultProject": "Techievibe.Ui",
+  "cli": {
+    "analytics": false
+  }
 }

@@ -16,7 +16,7 @@ export class DataService {
   constructor(private http: HttpClient) { }
 
   public getBlogPosts() {
-    var res = this.http.get<BlogPosts[]>("https://localhost:44389/api/Posts/list", this.options).pipe(catchError((err) => {
+    var res = this.http.get<BlogPosts[]>("http://localhost:59302/api/Posts/list", this.options).pipe(catchError((err) => {
       console.log("some error occurred", err);
       return throwError(err);
     }));
@@ -24,13 +24,13 @@ export class DataService {
   }
 
   public getBlogPostById(postId: number) {
-    var res = this.http.get<BlogPosts>(`https://localhost:44389/api/Posts/${postId}`, this.options);
+    var res = this.http.get<BlogPosts>(`http://localhost:59302/api/Posts/${postId}`, this.options);
     
     return res;
   }
 
   public createBlogPost(post: BlogPosts) {
-    var res = this.http.post<BlogPosts>(`https://localhost:44389/api/Posts/create`, JSON.stringify(post), this.options); 
+    var res = this.http.post<BlogPosts>(`http://localhost:59302/api/Posts/create`, JSON.stringify(post), this.options); 
     return res;
   }
 

@@ -23,7 +23,7 @@ namespace Techievibe.DataAccess.Models
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer("Data Source=25SW4Y2;Initial Catalog=DB_A61787_TechieVibe;Persist Security Info=True;User ID=DB_A61787_TechieVibe_admin;Password=Y6s35AnW1ubE;");
+                optionsBuilder.UseSqlServer("Data Source=sql5053.site4now.net;Initial Catalog=DB_A61787_TechieVibe;Persist Security Info=True;User ID=DB_A61787_TechieVibe_admin;Password=Y6s35AnW1ubE;");
             }
         }
 
