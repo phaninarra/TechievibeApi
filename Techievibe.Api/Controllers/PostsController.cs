@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Techievibe.Api.Authentication;
 using Techievibe.Api.Models;
 using Techievibe.DataAccess.Models;
 
@@ -15,6 +17,7 @@ namespace Techievibe.Api.Controllers
     [Route("api/[controller]")]
     [ApiController]
     [EnableCors("AllowOrigin")]
+    [Authorize]
     public class PostsController : ControllerBase
     {
         // GET api/Posts/list
