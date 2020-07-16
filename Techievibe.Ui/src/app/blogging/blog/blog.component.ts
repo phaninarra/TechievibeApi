@@ -6,6 +6,7 @@ import { BlogPosts } from '../../models/blog-posts';
 import { DatePipe } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BlogTitles } from 'src/app/models/blog-titles';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-blog',
@@ -28,40 +29,41 @@ export class BlogComponent implements OnInit {
     this.getBlogPosts();
   }
 
-  public getBlogPosts() {
-    var result = this.dataService.getBlogPosts().subscribe(
-      response => {
-        this.postsList = response.map(item => {
-          this.postsTitles.push(new BlogTitles(item.postId, item.postTitle));
-
-          const threeDots = "...";
-          if(item.postTitle.length > 80) {
-            item.postTitle = item.postTitle.substring(0, 80) + threeDots; 
-          }
-
-          return new BlogPosts(
-            item.postId,
-            item.postTitle,
-            item.postBody,
-            item.postAuthor,
-            this.pipe.transform(item.postDate, 'longDate'),
-            item.postReadingTime,
-            item.postLikeCount,
-            item.postCommentCount,
-            item.postCategoryId,
-            item.postCategory
-          )
-        })
-      },
-      error => {
-          this.isBlogPostsError = true;
-      },
-      () => {
-        console.log("service call completed");
-      }
-    )
-
-    console.log("result is : " + result);
+  public async getBlogPosts() {
+    var authResult = await this.dataService.getAuthToken().subscribe(
+          async authResponse => {
+            var result = await this.dataService.getBlogPosts().subscribe(
+              response => {
+                this.postsList = response.map(item => {
+                  this.postsTitles.push(new BlogTitles(item.postId, item.postTitle));
+        
+                  const threeDots = "...";
+                  if(item.postTitle.length > 80) {
+                    item.postTitle = item.postTitle.substring(0, 80) + threeDots; 
+                  }
+        
+                  return new BlogPosts(
+                    item.postId,
+                    item.postTitle,
+                    item.postBody,
+                    item.postAuthor,
+                    this.pipe.transform(item.postDate, 'longDate'),
+                    item.postReadingTime,
+                    item.postLikeCount,
+                    item.postCommentCount,
+                    item.postCategoryId,
+                    item.postCategory
+                  )
+                })
+              },
+              error => {
+                  this.isBlogPostsError = true;
+              },
+              () => {
+                console.log("service call completed");
+              }
+            )
+      });
   }
 
   navigateToBlogPost(postId : number){
