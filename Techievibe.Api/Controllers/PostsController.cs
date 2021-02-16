@@ -8,27 +8,32 @@ using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Techievibe.Api.Authentication;
 using Techievibe.Api.Models;
 using Techievibe.DataAccess.Models;
+using Microsoft.Extensions.Configuration;
 
 namespace Techievibe.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
     [EnableCors("AllowOrigin")]
-    [Authorize]
+    //[Authorize]
     public class PostsController : ControllerBase
     {
+        IConfiguration _configuration;
+        public PostsController(IConfiguration configuration)
+        {
+            _configuration = configuration;
+        }
         // GET api/Posts/list
         [HttpGet]
         [Route("list")]
         public IActionResult Get()
         {
-            using (var context = new DB_A61787_TechieVibeContext())
+            using (var context = new DB_A61787_TechieVibeContext(_configuration))
             {
                 var posts = context.BlogPosts.Include(x=>x.PostCategory).OrderByDescending(x=>x.PostDate).ToList();
-                                
+                
                 return Ok(posts);
             }
         }
@@ -37,9 +42,10 @@ namespace Techievibe.Api.Controllers
         [HttpGet("{postId}")]
         public IActionResult Get(int postId)
         {
-            using (var context = new DB_A61787_TechieVibeContext())
+            using (var context = new DB_A61787_TechieVibeContext(_configuration))
             {
                 var post = context.BlogPosts.Include(y => y.PostCategory).FirstOrDefault(y => y.PostId == postId);
+
                 return Ok(post);
             }
         }
@@ -53,7 +59,7 @@ namespace Techievibe.Api.Controllers
                 return BadRequest("Something wrong in the request");
 
             //get post category or create a new one.
-            using (var context = new DB_A61787_TechieVibeContext())
+            using (var context = new DB_A61787_TechieVibeContext(_configuration))
             {
                 var category = context.BlogPostCategories.Where(x => x.CategoryName.ToLower() == post.PostCategory.CategoryName.ToLower()).FirstOrDefault();
 
