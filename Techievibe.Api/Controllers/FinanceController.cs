@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Techievibe.Api.Finance;
 
 namespace Techievibe.Api.Controllers
 {
@@ -16,9 +15,7 @@ namespace Techievibe.Api.Controllers
         [Route("transactions")]
         public IActionResult Get()
         {
-            TransactionReader rdr = new TransactionReader();
-
-            return Ok(rdr.ReadTransactionsFromFile(@"C:\PHANI_NARRA\PHANI\RESPONSIBILITIES\FINANCES\transactions_2017_to_July2020.csv"));
+            return Ok();
         }
     }
 }
